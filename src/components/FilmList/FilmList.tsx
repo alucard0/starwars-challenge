@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import CharacterDetail from "../CharacterDetail/CharacterDetail"
 const apiURL = "https://swapi.dev/api/films"
 
 type FilmType = {
@@ -26,40 +27,18 @@ type ResponseType = {
 }*/
 const FilmList = (): JSX.Element => {
   const [films, setFilms] = useState<FilmType[] | null>(null)
-
+  const controller = new AbortController()
   const getFilms = (): void => {
-    fetch(apiURL)
+    fetch(apiURL, { signal: controller.signal })
       .then((response) => response.json())
       .then((data) => setFilms(data.results))
   }
 
-  const getCharacterNames = (charactersUrls: string[]): void => {
-    Promise.all(
-      charactersUrls.map((url) =>
-        fetch(url)
-          .then(checkStatus) // check the response of our APIs
-          .then(parseJSON) // parse it to Json
-          .catch((error) => console.log("There was a problem!", error))
-      )
-    ).then((data) => {
-      console.log(data)
-    })
-  }
-
-  const checkStatus = (response: Response): Promise<Response> => {
-    if (response.ok) {
-      return Promise.resolve(response)
-    } else {
-      return Promise.reject(new Error(response.statusText))
-    }
-  }
-
-  const parseJSON = (response: Response): Promise<FilmType> => {
-    return response.json()
-  }
-
   useEffect(() => {
     getFilms()
+    return () => {
+      controller.abort()
+    }
   }, [])
 
   if (!films) return <p>Movies not found</p>
@@ -69,7 +48,7 @@ const FilmList = (): JSX.Element => {
       {films.map(({ title, episode_id, characters }) => (
         <li key={episode_id}>
           {title}
-          <button onClick={(): void => getCharacterNames(characters)}>More info</button>
+          <CharacterDetail charactersUrls={characters} />
         </li>
       ))}
     </ul>
