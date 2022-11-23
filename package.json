@@ -1,0 +1,83 @@
+{
+  "name": "template-react-ts",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^27.5.2",
+    "@types/node": "^16.18.3",
+    "@types/react": "^18.0.25",
+    "@types/react-dom": "^18.0.8",
+    "@typescript-eslint/eslint-plugin": "^5.43.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "eslint-plugin-react": "^7.31.10",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-testing-library": "^5.9.1",
+    "jest-environment-jsdom": "^29.3.1",
+    "jest-transform-stub": "^2.0.0",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1",
+    "ts-jest": "^29.0.3",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "npm run test:js && npm run test:ts",
+    "test:ts": "tsc --noEmit",
+    "test:js": "jest --coverage",
+    "lint": "npm run lint:format && npm run lint:js",
+    "lint:format": "prettier --check \"./**/*.{js,jsx,ts,tsx}\"",
+    "lint:js": "eslint \"./**/*.{js,jsx,ts,tsx}\"",
+    "lint:fix": "eslint \"./**/*.{js,jsx,ts,tsx}\" --fix",
+    "format": "prettier --write \"./**/*.{js,jsx,ts,tsx}\"",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.2.0",
+    "@commitlint/config-conventional": "^17.2.0",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@typescript-eslint/parser": "^5.43.0",
+    "eslint-import-resolver-typescript": "^3.5.2",
+    "husky": "^8.0.1",
+    "typescript": "^4.8.4"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.{json,md,yml}": [
+      "prettier --write",
+      "git add"
+    ],
+    "*.{css,scss}": [
+      "stylelint --fix",
+      "git add"
+    ]
+  }
+}

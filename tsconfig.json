@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "es2019",
+    "lib": ["dom", "dom.iterable", "es5", "es6", "es7", "es2017","esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "incremental": true,
+    "declaration": true,
+    "sourceMap": true,
+    "rootDir": ".",
+    "baseUrl": "."
+  },
+  "include": [ "src/**/*", "**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"],
+  "exclude": ["node_modules", "coverage","build", "scripts"]
+}
