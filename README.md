@@ -1,3 +1,7 @@
+#Prerequisites
+
+This app works with Node 16.15.0 version
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

@@ -2,7 +2,12 @@ import { useEffect, useState } from "react"
 import { FilmType } from "src/components/FilmList/Film.type"
 import { fetchFilms } from "src/api/fetchFilms"
 
-export const useFetchFilms = () => {
+type ReturnType = {
+  films: FilmType[]
+  isFetching: boolean
+}
+
+export const useFetchFilms = (): ReturnType => {
   const [films, setFilms] = useState<FilmType[]>([])
   const [isFetching, setIsFetching] = useState<boolean>(true)
 
