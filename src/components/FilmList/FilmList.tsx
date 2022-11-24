@@ -1,47 +1,12 @@
-import { useEffect, useState } from "react"
+import { useFetchFilms } from "src/hooks/useFetchFilms"
 import CharacterDetail from "../CharacterDetail/CharacterDetail"
-const apiURL = "https://swapi.dev/api/films"
 
-type FilmType = {
-  title: string
-  episode_id: number
-  opening_crawl: string
-  director: string
-  producer: string
-  release_date: string
-  characters: string[]
-  planets: string[]
-  starships: string[]
-  vehicles: string[]
-  species: string[]
-  created: string
-  edited: string
-  url: string
-}
-/*
-type ResponseType = {
-  count: number
-  next: string | null
-  previous: string | null
-  results: FilmType[]
-}*/
 const FilmList = (): JSX.Element => {
-  const [films, setFilms] = useState<FilmType[] | null>(null)
-  const controller = new AbortController()
-  const getFilms = (): void => {
-    fetch(apiURL, { signal: controller.signal })
-      .then((response) => response.json())
-      .then((data) => setFilms(data.results))
-  }
+  const { films, isFetching } = useFetchFilms()
+  const isEmptyFilms = films.length === 0
 
-  useEffect(() => {
-    getFilms()
-    return () => {
-      controller.abort()
-    }
-  }, [])
-
-  if (!films) return <p>Movies not found</p>
+  if (isFetching) return <p>Loading ...</p>
+  if (isEmptyFilms) return <p>Films not found</p>
 
   return (
     <ul>
